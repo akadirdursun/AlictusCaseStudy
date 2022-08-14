@@ -13,6 +13,7 @@ namespace Abdulkadir.RingStack
 
         #region EVENTS
         public event Action onNewRingPlaced;
+        public event Action onRingRemoved;
         #endregion
 
         public void SetStackPositions(List<Ring> ringList)
@@ -38,6 +39,7 @@ namespace Abdulkadir.RingStack
                 ringCount[ringList[i].Color] += 1;
             }
         }
+
         //Checks if same colored rings stack in one pole
         public bool IsStackCompleted(Dictionary<RingColors, int> ringCount)
         {
@@ -56,15 +58,6 @@ namespace Abdulkadir.RingStack
             return true;
         }
 
-        public Ring GetTopRing()
-        {
-            Ring ring = ringList[ringList.Count - 1];
-            ringList.Remove(ring);
-            ring.OnPick();
-
-            return ring;
-        }
-
         public void AddNewRing(Ring ring)
         {
             ring.transform.SetParent(transform);
@@ -74,6 +67,17 @@ namespace Abdulkadir.RingStack
             onNewRingPlaced?.Invoke();
         }
 
+        public Ring GetTopRing()
+        {
+            Ring ring = ringList[ringList.Count - 1];
+            ringList.Remove(ring);
+            ring.OnPick();
+
+            onRingRemoved?.Invoke();
+            return ring;
+        }
+
+
         public bool CanRingStacked(Ring ring)
         {
             if (ringList.Count > 0 && ringList[ringList.Count - 1].Color != ring.Color) return false;
@@ -81,19 +85,11 @@ namespace Abdulkadir.RingStack
             return true;
         }
 
-        private Vector3 GetStackPosition(int index)
+        public bool HasRings()
         {
-            Vector3 stackPosition = Vector3.zero;
-            if (positions.Count > ringList.Count)
-            {
-                stackPosition = positions[ringList.Count];
-            }
-            else
-            {
-                stackPosition.y = index * height;
-                positions.Add(stackPosition);
-            }
-            return stackPosition;
+            if (ringList.Count > 0) return true;
+
+            return false;
         }
 
         public Vector3 GetStackPosition()
@@ -106,6 +102,21 @@ namespace Abdulkadir.RingStack
             else
             {
                 stackPosition.y = ringList.Count * height;
+                positions.Add(stackPosition);
+            }
+            return stackPosition;
+        }
+
+        private Vector3 GetStackPosition(int index)
+        {
+            Vector3 stackPosition = Vector3.zero;
+            if (positions.Count > ringList.Count)
+            {
+                stackPosition = positions[ringList.Count];
+            }
+            else
+            {
+                stackPosition.y = index * height;
                 positions.Add(stackPosition);
             }
             return stackPosition;

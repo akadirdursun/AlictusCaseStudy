@@ -114,8 +114,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1004308164258510250}
-  - component: {fileID: 1004308164258510251}
   - component: {fileID: 1004308164258510248}
+  - component: {fileID: 3599724719740201119}
+  - component: {fileID: 1004308164258510251}
+  - component: {fileID: 113820188234117289}
   m_Layer: 6
   m_Name: Character
   m_TagString: Untagged
@@ -141,19 +143,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1004308164258510251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004308164258510253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffcb36f74bfa9d34ba73873761d277ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ghostRing: {fileID: 1176295598572298411}
 --- !u!65 &1004308164258510248
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -167,6 +156,50 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6, y: 35, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &3599724719740201119
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004308164258510253}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 3740b0c7f0c2a467996f172581c992e4, type: 3}
+  m_Controller: {fileID: 9100000, guid: d9e42ce6ea203f4439bf955f6b615f1a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1004308164258510251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004308164258510253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffcb36f74bfa9d34ba73873761d277ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostRing: {fileID: 1176295598572298411}
+--- !u!114 &113820188234117289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004308164258510253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abf97f3c427254c46a0c1c2e2228703d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1004308163535515066
 PrefabInstance:
   m_ObjectHideFlags: 0
