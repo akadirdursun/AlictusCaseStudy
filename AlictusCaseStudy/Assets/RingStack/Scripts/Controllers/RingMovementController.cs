@@ -54,7 +54,17 @@ namespace Abdulkadir.RingStack
 
         public void MoveTo(Vector3 movement)
         {
-            if (sequence != null) return;
+            if (sequence != null)
+            {
+                if (movement != Vector3.zero)
+                {
+                    sequence.Kill();
+                }
+                else
+                {
+                    return;
+                }
+            }
 
             transform.position += movement;
         }
