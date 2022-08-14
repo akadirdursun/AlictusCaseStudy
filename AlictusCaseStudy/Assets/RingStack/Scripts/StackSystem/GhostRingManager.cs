@@ -17,8 +17,10 @@ namespace Abdulkadir.RingStack
         }
         #endregion
 
-        public void OnHoverOver(Ring ring)
+        public void OnHoverOver(Ring ring, StackPole pickedStackPole)
         {
+            if (myStackPole == pickedStackPole) return;
+
             if (myStackPole.CanRingStacked(ring))
             {
                 ghostRing.ActivateGhostRing(ring.Color, myStackPole.GetStackPosition());

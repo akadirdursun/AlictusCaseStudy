@@ -17,6 +17,11 @@ namespace Abdulkadir.RingStack
         private Coroutine characterCheckCoroutine;
 
         #region MonoBehaviour METHODS
+        private void OnEnable()
+        {
+            StaticEvents.onLevelCompleted += OnLevelCompleted;
+        }
+
         private void Update()
         {
             if (Input.GetMouseButtonDown(0))
@@ -31,6 +36,18 @@ namespace Abdulkadir.RingStack
             {
                 DragTheRing();
             }
+        }
+
+        private void OnDisable()
+        {
+            StaticEvents.onLevelCompleted -= OnLevelCompleted;
+        }
+        #endregion
+
+        #region EVENT LISTENERS
+        private void OnLevelCompleted()
+        {
+            this.enabled = false;
         }
         #endregion
 
@@ -119,7 +136,7 @@ namespace Abdulkadir.RingStack
                     if (hoveredGhostRingManager != null)
                         hoveredGhostRingManager.OnLeaveOver();
 
-                    ghostRingManager.OnHoverOver(pickedRing);
+                    ghostRingManager.OnHoverOver(pickedRing, ringsLastPole);
                     hoveredGhostRingManager = ghostRingManager;
                 }
             }

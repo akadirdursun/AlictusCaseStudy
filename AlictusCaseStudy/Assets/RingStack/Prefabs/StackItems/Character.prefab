@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba42a7e595f4eb44b725f5bb8ec47f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headPosition: {fileID: 1004308163304092706}
   positions: []
   ringList: []
   height: 1.8169779
@@ -166,7 +165,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 35, z: 3}
+  m_Size: {x: 6, y: 35, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1004308163535515066
 PrefabInstance:

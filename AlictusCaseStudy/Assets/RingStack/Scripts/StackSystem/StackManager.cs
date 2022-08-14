@@ -43,8 +43,7 @@ namespace Abdulkadir.RingStack
         {
             if (LevelCompletedCheck())
             {
-                //TODO: Level Completed
-                Debug.LogError("LevelCompleted");
+                StaticEvents.onLevelCompleted?.Invoke();
             }
         }
         #endregion
