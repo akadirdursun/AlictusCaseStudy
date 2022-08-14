@@ -8,13 +8,19 @@ namespace Abdulkadir.RingStack
     {
         [SerializeField] private RingColors color;
         [Space]
-        [SerializeField] private List<RingInfo> ringInfoes = new List<RingInfo>();
+        [SerializeField] private List<RingInfo> ringInfos = new List<RingInfo>();
+
+        private RingMovementController myMovementController;
 
         #region Properties
         public RingColors Color { get => color; }
         #endregion
 
         #region MonoBehaviour METHODS   
+        private void Awake()
+        {
+            myMovementController = GetComponent<RingMovementController>();
+        }
         private void OnEnable()
         {
             InitializeColor();
@@ -23,29 +29,32 @@ namespace Abdulkadir.RingStack
 
         public void OnPick()
         {
+            myMovementController.OnPickSequence();
         }
 
-        public void OnDrag(Vector3 position)
+        public void OnDrag(Vector3 movement)
         {
+            myMovementController.MoveTo(movement);
         }
 
-        public void OnDrop()
+        public void OnDrop(Vector3 stackPosition)
         {
+            myMovementController.OnDropSequence(stackPosition);
         }
 
         public void InitializeColor()
         {
             //Activate right colored ring
-            for (int i = 0; i < ringInfoes.Count; i++)
+            for (int i = 0; i < ringInfos.Count; i++)
             {
-                if (ringInfoes[i].Color == color)
+                if (ringInfos[i].Color == color)
                 {
-                    if (ringInfoes[i].RingObject.activeInHierarchy) break; //If right colored ring already active no need to 2nd check
+                    if (ringInfos[i].RingObject.activeInHierarchy) break; //If right colored ring already active no need to 2nd check
 
-                    ringInfoes[i].RingObject.SetActive(true);
+                    ringInfos[i].RingObject.SetActive(true);
                     continue;
                 }
-                ringInfoes[i].RingObject.SetActive(false);
+                ringInfos[i].RingObject.SetActive(false);
             }
         }
     }

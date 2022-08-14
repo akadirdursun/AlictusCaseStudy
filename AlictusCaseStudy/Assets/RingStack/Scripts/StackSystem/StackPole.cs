@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,16 +9,23 @@ namespace Abdulkadir.RingStack
         [SerializeField] private List<Vector3> positions = new List<Vector3>();
         [SerializeField] private List<Ring> ringList = new List<Ring>();
 
+        [SerializeField][HideInInspector] private float height;
+
+        #region EVENTS
+        public event Action onNewRingPlaced;
+        #endregion
+
         public void SetStackPositions(List<Ring> ringList)
         {
+            positions.Clear();
+            this.ringList.Clear();
+
             this.ringList = ringList;
-            float height = ringList[0].GetComponentInChildren<MeshRenderer>(true).bounds.size.y;
+            height = ringList[0].GetComponentInChildren<MeshRenderer>(true).bounds.size.y;
 
             for (int i = 0; i < ringList.Count; i++)
             {
-                Vector3 newpos = Vector3.zero;
-                newpos.y = i * height;
-                positions.Add(newpos);
+                Vector3 newpos = GetStackPosition(i);
 
                 ringList[i].transform.localPosition = newpos;
             }
@@ -31,10 +38,11 @@ namespace Abdulkadir.RingStack
                 ringCount[ringList[i].Color] += 1;
             }
         }
-
         //Checks if same colored rings stack in one pole
         public bool IsStackCompleted(Dictionary<RingColors, int> ringCount)
         {
+            if (ringList.Count == 0) return true;
+
             RingColors stackColor = ringList[0].Color;
 
             if (ringCount[stackColor] != ringList.Count) return false; //if same color counts is not equal to the stack count means there are another colored ring in the stack
@@ -46,6 +54,61 @@ namespace Abdulkadir.RingStack
             }
 
             return true;
+        }
+
+        public Ring GetTopRing()
+        {
+            Ring ring = ringList[ringList.Count - 1];
+            ringList.Remove(ring);
+            ring.OnPick();
+
+            return ring;
+        }
+
+        public void AddNewRing(Ring ring)
+        {
+            ring.transform.SetParent(transform);
+            ring.OnDrop(GetStackPosition());
+            ringList.Add(ring);
+
+            onNewRingPlaced?.Invoke();
+        }
+
+        public bool CanRingStacked(Ring ring)
+        {
+            if (ringList.Count > 0 && ringList[ringList.Count - 1].Color != ring.Color) return false;
+
+            return true;
+        }
+
+        private Vector3 GetStackPosition(int index)
+        {
+            Vector3 stackPosition = Vector3.zero;
+            if (positions.Count > ringList.Count)
+            {
+                stackPosition = positions[ringList.Count];
+            }
+            else
+            {
+                stackPosition.y = index * height;
+                positions.Add(stackPosition);
+            }
+            return stackPosition;
+        }
+
+        public Vector3 GetStackPosition()
+        {
+            Vector3 stackPosition = Vector3.zero;
+            if (positions.Count > ringList.Count)
+            {
+                stackPosition = positions[ringList.Count];
+            }
+            else
+            {
+                stackPosition.y = ringList.Count * height;
+                positions.Add(stackPosition);
+            }
+            return stackPosition;
         }
     }
 }

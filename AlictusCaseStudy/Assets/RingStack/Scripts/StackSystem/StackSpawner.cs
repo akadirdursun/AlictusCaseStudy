@@ -40,6 +40,7 @@ namespace Abdulkadir.RingStack
             }
 
             MyStackPole.SetStackPositions(spawnedRings);
+            EditorUtility.SetDirty(MyStackPole);
         }
 
         public void ClearRings()

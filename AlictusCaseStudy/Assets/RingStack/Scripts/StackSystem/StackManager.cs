@@ -6,24 +6,45 @@ namespace Abdulkadir.RingStack
 {
     public class StackManager : MonoBehaviour
     {
-        [SerializeField] private List<StackPole> stackPoles = new List<StackPole>();
+        private List<StackPole> stackPoles = new List<StackPole>();
 
         private Dictionary<RingColors, int> colorCounts = new Dictionary<RingColors, int> { { RingColors.Pink, 0 }, { RingColors.Yellow, 0 }, { RingColors.Green, 0 }, { RingColors.Blue, 0 } };
 
         #region MonoBehaviour METHODS
+        private void Awake()
+        {
+            stackPoles.AddRange(GetComponentsInChildren<StackPole>());
+        }
+
+        private void OnEnable()
+        {
+            for (int i = 0; i < stackPoles.Count; i++)
+            {
+                stackPoles[i].onNewRingPlaced += OnRingReplaced;
+            }
+        }
+
         private void Start()
         {
             CountTheRings();
-            Debug.Log(LevelCompletedCheck());
+        }
+
+        private void OnDisable()
+        {
+            for (int i = 0; i < stackPoles.Count; i++)
+            {
+                stackPoles[i].onNewRingPlaced -= OnRingReplaced;
+            }
         }
         #endregion
 
         #region EVENT LISTENERS
-        private void OnRingMoved()
+        private void OnRingReplaced()
         {
             if (LevelCompletedCheck())
             {
                 //TODO: Level Completed
+                Debug.LogError("LevelCompleted");
             }
         }
         #endregion
