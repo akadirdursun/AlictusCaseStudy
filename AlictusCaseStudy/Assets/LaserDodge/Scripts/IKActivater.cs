@@ -39,7 +39,7 @@ namespace Abdulkadir.LaserDodge
                 fastIKFabrics[i].SetActive(value);
             }
 
-            LaserDodgeEvents.onIkActivated?.Invoke(value);
+            LaserDodgeEvents.onIkActivated?.Invoke(value);            
         }
     }
 }

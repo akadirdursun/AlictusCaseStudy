@@ -26,7 +26,9 @@ namespace Abdulkadir.LaserDodge
 
         private void ObstacleCheck()
         {
-            if (Physics.Raycast(transform.position, Vector3.forward, checkDistance, obstacleLayer))
+            Ray ray = new Ray(transform.position, Vector3.forward);
+            //if (Physics.Raycast(transform.position, Vector3.forward, checkDistance, obstacleLayer))
+            if (Physics.SphereCast(ray, myRenderer.bounds.extents.x, checkDistance, obstacleLayer))
             {
                 myRenderer.material.color = Color.red;
             }

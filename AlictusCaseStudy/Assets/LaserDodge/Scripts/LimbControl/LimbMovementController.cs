@@ -53,7 +53,7 @@ namespace Abdulkadir.LaserDodge
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit rayHit, 100f, locaterLayer))
             {
-                pickedLocater = rayHit.transform.GetComponent<FastIKFabric>().Target;
+                pickedLocater = rayHit.collider.GetComponent<FastIKFabric>().Target;
             }
         }
 
@@ -74,7 +74,7 @@ namespace Abdulkadir.LaserDodge
         private Vector3 GetMousePointOnWorld()
         {
             Vector3 mousePos = Input.mousePosition;
-            mousePos.z = -Camera.main.transform.position.z;
+            mousePos.z = pickedLocater.position.z;
             return Camera.main.ScreenToWorldPoint(mousePos);
         }
     }
