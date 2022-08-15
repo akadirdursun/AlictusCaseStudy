@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3021404927483111695}
   - component: {fileID: 3021404927483111693}
   - component: {fileID: 3021404927483111692}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3021404928475741849}
   - component: {fileID: 3021404928475741846}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LaserSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 3021404928622114366}
   - component: {fileID: 3021404928622114364}
   - component: {fileID: 3021404928622114367}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 3021404929150697669}
   - component: {fileID: 3021404929150697668}
   - component: {fileID: 3021404929150697671}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Laser_wSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 3021404929239613996}
   - component: {fileID: 3021404929239613994}
   - component: {fileID: 3021404929239613997}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Laser_Emitter (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 3021404929421909602}
   - component: {fileID: 3021404929421909600}
   - component: {fileID: 3021404929421909603}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +499,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5430736626802997596}
-  m_Layer: 0
+  - component: {fileID: 59778494}
+  - component: {fileID: 5966169539081370806}
+  m_Layer: 10
   m_Name: LaserParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,3 +525,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &59778494
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7593357159708447840}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.25
+  m_Height: 3.2
+  m_Direction: 0
+  m_Center: {x: 0.08, y: 0, z: 0}
+--- !u!114 &5966169539081370806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7593357159708447840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fe9e3c9e58cf7458fcefdf6e712f07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

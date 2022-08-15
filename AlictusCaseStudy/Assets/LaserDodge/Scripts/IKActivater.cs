@@ -1,14 +1,12 @@
-using DitzelGames.FastIK;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Collections.Generic;
+using DitzelGames.FastIK;
 
 namespace Abdulkadir.LaserDodge
 {
     public class IKActivater : MonoBehaviour
     {
-        [SerializeField] private GameObject ikTargets;
-
         private List<FastIKFabric> fastIKFabrics = new List<FastIKFabric>();
         private Animator myAnimator;
 
@@ -41,7 +39,7 @@ namespace Abdulkadir.LaserDodge
                 fastIKFabrics[i].SetActive(value);
             }
 
-            ikTargets.SetActive(value);
+            LaserDodgeEvents.onIkActivated?.Invoke(value);
         }
     }
 }
