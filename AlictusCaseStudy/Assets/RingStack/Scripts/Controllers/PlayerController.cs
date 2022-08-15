@@ -145,7 +145,7 @@ namespace Abdulkadir.RingStack
         private Vector3 GetMousePointOnWorld()
         {
             Vector3 mousePos = Input.mousePosition;
-            mousePos.z = -Camera.main.transform.position.z;
+            mousePos.z = 10f;
             return Camera.main.ScreenToWorldPoint(mousePos);
         }
     }
