@@ -21,6 +21,7 @@ namespace DitzelGames.FastIK
         public Transform Target;
         public Transform Pole;
 
+        private Transform currentTarget;
         /// <summary>
         /// Solver iterations per update
         /// </summary>
@@ -118,7 +119,7 @@ namespace DitzelGames.FastIK
 
         private void ResolveIK()
         {
-            if (Target == null)
+            if (currentTarget == null)
                 return;
 
             if (BonesLength.Length != ChainLength)
@@ -134,8 +135,8 @@ namespace DitzelGames.FastIK
             for (int i = 0; i < Bones.Length; i++)
                 Positions[i] = GetPositionRootSpace(Bones[i]);
 
-            var targetPosition = GetPositionRootSpace(Target);
-            var targetRotation = GetRotationRootSpace(Target);
+            var targetPosition = GetPositionRootSpace(currentTarget);
+            var targetRotation = GetRotationRootSpace(currentTarget);
 
             //1st is possible to reach?
             if ((targetPosition - GetPositionRootSpace(Bones[0])).sqrMagnitude >= CompleteLength * CompleteLength)
@@ -229,6 +230,20 @@ namespace DitzelGames.FastIK
                 current.rotation = rotation;
             else
                 current.rotation = Root.rotation * rotation;
+        }
+
+        public void SetActive(bool value)
+        {
+            if (value)
+            {
+                Target.transform.position = transform.position;
+                Target.transform.rotation = transform.rotation;
+                currentTarget = Target;
+            }
+            else
+            {
+                currentTarget = null;
+            }
         }
 
         void OnDrawGizmos()
