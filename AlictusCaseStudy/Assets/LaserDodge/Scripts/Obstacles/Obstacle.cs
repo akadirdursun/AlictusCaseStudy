@@ -8,7 +8,7 @@ namespace Abdulkadir.LaserDodge
     {
         private void OnTriggerEnter(Collider other)
         {
-            Debug.LogError("Game Over!!!");
+            StaticEvents.onLevelFailed?.Invoke();
         }
     }
 }
